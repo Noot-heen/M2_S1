@@ -3,9 +3,19 @@ from src.correction import CorrectionInput, getSuggestions, CorrectionOutput
 from src.lemmatisation import LemmatisationInput, getRoot, LemmatisationOutput
 from src.autocompletion import AutocompletionInput, AutocompletionOutput, autocomplete
 from src.verification import VerificationInput, VerificationOutput, getToken
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-
+origins = [
+    "http://localhost:5173",
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 @app.get("/")
 def read_root():
     return {"Hello": "World"}

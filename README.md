@@ -24,9 +24,10 @@ Frontend, integration backend dans frontend
 On a développé un éditeur de texte léger basé sur une architecture moderne et modulaire. Le frontend utilise Vite et React pour une interface rapide, avec Tiptap pour l’édition riche et Zustand pour la gestion d’état. Le backend repose sur FastAPI pour des API simples et performantes. Côté traitement linguistique, on intègre un système d’autocomplétion basé sur des bigrammes, un correcteur orthographique via la distance de Levenshtein, une vérification contextuelle avec une matrice de co-occurrence, et une lemmatisation à partir d’un dictionnaire personnalisé.
 
 ## DOCUMENTATION TECHNIQUE
-- frontend: vite, reactjs, tiptap, zustand
-- backend: fastapi
+- frontend: vite, reactjs, tiptap, zustand (/frontend/)
+- backend: fastapi (main.py , /src/)
 - IA: bigram(autocompletion), levenshtein(Correcteur Orthographique), co-occurence matrix(Vérification à base de règles), lemmatisation(fototeny.csv)
+- Demarrage du projet: dans M2_S1/ faire `fastapi dev`, puis `cd frontend` et enfin `npm run dev`
 
 ## BIBLIOGRAPHIE
 - dataset baiboly: https://nybaiboly.net/Bible.htm
