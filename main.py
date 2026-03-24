@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 from src.correction import CorrectionInput, getSuggestions, CorrectionOutput
 from src.lemmatisation import LemmatisationInput, getRoot, LemmatisationOutput
+from src.autocompletion import AutocompletionInput, AutocompletionOutput, autocomplete
+from src.verification import VerificationInput, VerificationOutput, getToken
 
 app = FastAPI()
-
 
 @app.get("/")
 def read_root():
@@ -15,8 +16,9 @@ def correction(input: CorrectionInput) -> CorrectionOutput:
     return CorrectionOutput(suggestions=sug)
 
 @app.post("/api/verification")
-def verification():
-    return "Verification"
+def verification(input: VerificationInput) -> VerificationOutput:
+    token = getToken(input.sentence)
+    return VerificationOutput(matrix=token)
 
 @app.post("/api/lemmatisation")
 def lemmatisation(input: LemmatisationInput) -> LemmatisationOutput:
@@ -24,5 +26,6 @@ def lemmatisation(input: LemmatisationInput) -> LemmatisationOutput:
     return LemmatisationOutput(root=root)
 
 @app.post("/api/autocompletion")
-def autocompletion():
-    return "Autocompletion"
+def autocompletion(input: AutocompletionInput) -> AutocompletionOutput:
+    out = autocomplete(input.sentence)
+    return AutocompletionOutput(completion=out)
